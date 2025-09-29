@@ -65,7 +65,9 @@
     --foreground: 222 47% 11%;
     --primary: 250 47% 60%;
     --primary-foreground: 210 40% 98%;
-    --card: 0 0% 100%;
+    /* --card: 213, 10%, 30%; */
+    --card: 201, 11%, 46%, 0.2;
+    --val: 0 0% 100%;
   }
 
   .dark {
@@ -74,7 +76,7 @@
     --foreground: 213 31% 91%;
     --primary: 250 65% 65%;
     --primary-foreground: 210 40% 98%;
-    --card: 222 47% 8%;
+    /* --card: 222 47% 8%; */
   }
   * {
     @apply border-border;
@@ -120,14 +122,14 @@
 
 @utility gradient-border {
   @apply relative rounded-md;
-  background: linear-gradient(to right, hsl(var(--card)), hsl(var(--card)));
+  background: linear-gradient(to right, hsla(var(--card)), hsla(var(--card)));
   background-clip: padding-box;
   border: 1px solid transparent;
 }
 
 @utility cosmic-button {
-  @apply px-6 py-2 rounded-full bg-primary text-primary-foreground font-medium 
-  transition-all duration-300 hover:shadow-[0_0_10px_rgba(139,92,246,0.5)]
+  @apply px-6 py-2 rounded-full bg-[#48eda8] text-[#0f1111] font-medium 
+  transition-all duration-300 hover:shadow-[0_0_10px_rgba(73,148,203,0.7)]
   hover:scale-105 active:scale-95;
 }
 
@@ -148,18 +150,18 @@
 
 /**/
 @utility logo {
-  display: flex;
+  /* display: flex;
   align-items: center;
   justify-content: center;
   column-gap: 1rem;
-  font-size: 1.75rem;
+  font-size: 1.75rem; */
   /* color: var(--text-color); */
-  background: linear-gradient(to right, #052659 10%, #afb3b7 40%, #c1dadf 50%);
+  background: linear-gradient(to right, #48eda8 10%, #bbd5ed 80%, #48eda8 50%);
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
-@utility inline {
+@utility inline-it {
   display: inline-block;
 }
 @utility bounce-it {
@@ -196,7 +198,34 @@
   background-size: 300% 300%;
   animation: glow 6s linear infinite;
 }
+
+@keyframes bounce {
+  0%,
+  20%,
+  50%,
+  80%,
+  100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
 body {
-  height: 1000px;
   background-color: #0f1111;
+}
+
+@keyframes spin-reverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+@utility animate-spin-reverse {
+  animation: spin-reverse 1s linear infinite;
 }
