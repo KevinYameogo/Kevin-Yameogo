@@ -1,22 +1,42 @@
 import { Mail, Phone, Map, Linkedin, Bot, Send } from "lucide-react";
 import { cn } from "../lib/utils";
 import { useToast } from "./hooks/use-toast";
-import { useState } from "react";
+import { useState, useRef } from "react";
+import emailjs from "@emailjs/browser";
 export const ContactSection = () => {
   const { toast } = useToast();
   const [isSubmitted, setIsSubtmitted] = useState(false);
+  const form = useRef();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubtmitted(true);
-    setTimeout(() => {
-      toast({
-        title: "Message sent!",
-        description:
-          "Thank you for reaching out! I will get back to you very soon!",
-      });
-      setIsSubtmitted(false);
-    }, 1000);
+
+    emailjs
+      .sendForm("service_zmv9efl", "template_yvz2hzb", form.current, {
+        publicKey: "VvoP5jnFiCCntZf9W",
+      })
+      .then(
+        () => {
+          toast({
+            title: "✅ Message sent!",
+            description:
+              "Thank you for reaching out! I’ll get back to you very soon!",
+          });
+          form.current.reset();
+        },
+        (error) => {
+          console.error("❌ Email send failed:", error.text);
+          toast({
+            title: "Error",
+            description: "Failed to send email. Please try again later.",
+            variant: "destructive",
+          });
+        }
+      )
+      .finally(() => setIsSubtmitted(false));
   };
+
   return (
     <section id="contact" className="py-24 px-4 relative bg-secondary/30">
       <div className="container mx-auto max-w-5xl backdrop-blur-xs">
@@ -86,12 +106,14 @@ export const ContactSection = () => {
               </div>
             </div>
           </div>
-          <div
-            className="bg-card  p-8 rounded-lg show-xs"
-            onSubmit={handleSubmit}
-          >
+          <div className="bg-card  p-8 rounded-lg show-xs">
             <h3 className="text-2xl font-semibold mb-6">Send a message</h3>
-            <form action="" className="space-y-6">
+            <form
+              ref={form}
+              onSubmit={handleSubmit}
+              action=""
+              className="space-y-6"
+            >
               <div>
                 <label
                   htmlFor="name"
@@ -102,7 +124,7 @@ export const ContactSection = () => {
                 <input
                   type="text"
                   id="name"
-                  name="name"
+                  name="from_name"
                   required
                   className="text-[#1E1E1E] px-4 w-full py-3 border border-input  rounded-md bg-bg  focus:outline-hidden focus:ring-2 focus:ring-[#48eda8]/50"
                   placeholder="Kevin Yameogo"
@@ -118,7 +140,7 @@ export const ContactSection = () => {
                 <input
                   type="email"
                   id="email"
-                  name="email"
+                  name="from_email"
                   required
                   className="text-[#1E1E1E]  px-4 w-full py-3 border border-input  rounded-md bg-bg  focus:outline-hidden focus:ring-2 focus:ring-[#48eda8]/50"
                   placeholder="yameokevin234@gmail.com"
