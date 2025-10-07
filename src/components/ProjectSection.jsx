@@ -6,7 +6,7 @@ const projects = [
     title: "EventoAll",
     description:
       "An interactive event discovery platform that lets users search events across 30+ countries via the Ticketmaster API. Built with modular JavaScript for maintainable code, a fully responsive layout for all devices, and a serverless Vercel function for seamless data fetching.",
-    image: "public/projects/event.mov.gif",
+    image: "/projects/event.mov.gif",
     tags: ["HTML", "CSS", "Javascript", "Nodejs", "Vercel"],
     githubUrl: "https://github.com/KevinYameogo/EventoAll",
     demoUrl: "https://eventoall.com/",
@@ -16,7 +16,7 @@ const projects = [
     title: "CitationLoad",
     description:
       "A citation management tool with an intuitive interface for adding, viewing, and organizing references. Features real-time search and filtering, with data handled as structured objects stored in Local Storage for seamless interaction.",
-    image: "public/projects/citation.mov.gif",
+    image: "/projects/citation.mov.gif",
     tags: ["HTML", "CSS", "Javascript"],
     githubUrl: "https://github.com/KevinYameogo/CitationLoad",
     demoUrl: "https://kevinyameogo.github.io/CitationLoad/",
