@@ -26,7 +26,7 @@ export const AboutSection = () => {
                 Get In Touch
               </a>
               <a
-                href="public/Kevin_Yameogo_Resume.pdf"
+                href="/Kevin_Yameogo_Resume.pdf"
                 target="_blank"
                 className="px-6 py-2 rounded-full  bg-primary/15 border-[#48eda8] hover:text-[#CDFF71]/90 text-[#CDFF71] hover:bg-primary/10 transition-colors duration-300"
               >
