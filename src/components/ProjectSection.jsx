@@ -21,15 +21,26 @@ const projects = [
     githubUrl: "https://github.com/KevinYameogo/CitationLoad",
     demoUrl: "https://kevinyameogo.github.io/CitationLoad/",
   },
-  // {
-  //   id: 3,
-  //   title: "ss1",
-  //   description: "a beautiful landing page app using react and tailwind",
-  //   image: "public/art.jpeg",
-  //   tags: ["react", "tailwindCSS", "supabase"],
-  //   githubUrl: "/",
-  //   demoUrl: "/",
-  // },
+  {
+    id: 3,
+    title: "Adapt-IQ",
+    description:
+      "An AI-powered PowerPoint add-in that acts as a presentation copilot. Features slide analysis with executive summaries, AI-generated speaker notes, a curated research engine, voice input, and a persistent Notes Library—all without leaving PowerPoint.",
+    image: "/projects/adapt-iq.gif",
+    tags: ["Next.js", "TypeScript", "OpenAI", "Office.js", "Tailwind CSS"],
+    githubUrl: "https://github.com/KevinYameogo/adapt-iq",
+    demoUrl: "",
+  },
+  {
+    id: 4,
+    title: "VCRTS",
+    description:
+      "A Vehicular Cloud Real-Time System (VCRTS) that simulates distributed job scheduling using parked vehicles as computing nodes. Features an MVC architecture with role-based views (Client, Vehicle Owner, VC Controller), real-time server-push notifications, checkpoint-based fault tolerance with automatic job recovery, redundancy-level scheduling, and a MySQL-backed persistent storage layer.",
+    image: "/projects/vcrts.gif",
+    tags: ["Java", "Swing", "MySQL"],
+    githubUrl: "https://github.com/KevinYameogo/VCRTS-Project",
+    demoUrl: "",
+  },
 ];
 export const ProjectSection = () => {
   return (
