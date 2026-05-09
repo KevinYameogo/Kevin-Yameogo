@@ -1,96 +1,76 @@
-import { useEffect, useState } from "react";
-import { cn } from "../lib/utils";
-import { X, Menu } from "lucide-react";
-const navItems = [
-  { name: "Home", href: "#hero" },
-  { name: "About", href: "#about" },
-  { name: "Skills", href: "#skills" },
-  { name: "Projects", href: "#projects" },
-  { name: "Contact", href: "#contact" },
-];
-export const NavBar = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
 
-  useEffect(() => {
-    const handleScrolled = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
-    if (isMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "auto";
-    }
-    window.addEventListener("scroll", handleScrolled);
+const NAV_LABELS = {
+  home:     "Home",
+  about:    "About",
+  skills:   "Skills",
+  projects: "Projects",
+  contact:  "Contact",
+};
 
-    return () => window.removeEventListener("scroll", handleScrolled);
-  }, [isMenuOpen]);
+export const NavBar = ({ active, onNavigate, sections }) => {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleClick = (section) => {
+    onNavigate(section);
+    setMenuOpen(false);
+  };
+
   return (
     <>
-      <nav
-        className={cn(
-          "fixed  w-full  z-40 transition-all duration-300 ",
-          isScrolled
-            ? "py-3  bg-[#52B8F7]/1 backdrop-blur-md shadow-xs"
-            : "py-5"
-        )}
-      >
-        <div className="container flex items-center justify-between">
-          <a
-            href="#hero"
-            className="text-xl font-bold text-primary flex items-center"
-          >
-            <span className="relative z-10 text-[#48eda8]/70 ">
-              <span className="text-glow logo text-[#F8F8FF] ">
-                Kevin Yameogo
-              </span>{" "}
-              Portfolio
-            </span>
-          </a>
-
-          {/**desktop */}
-          <div className="hidden md:flex space-x-8">
-            {navItems.map((item, key) => (
-              <a
-                key={key}
-                href={item.href}
-                className="bg-[#26292D] hover:bg-[#26292D]/60 rounded-full  py-1 px-2 text-[#48eda8]/70 hover:text-[#48eda8]/90 transition-colors duration-300"
-              >
-                {item.name}
-              </a>
-            ))}
-          </div>
-          {/*mobile view */}
+      {/* ── Desktop right-side vertical nav ── */}
+      <nav className="side-nav" aria-label="Section navigation">
+        {sections.map((s) => (
           <button
-            onClick={() => setIsMenuOpen((prev) => !prev)}
-            className="md:hidden p-2 z-50 text-[#F8F8FF]"
-            aria-label={isMenuOpen ? "close menu" : "open menu"}
+            key={s}
+            id={`nav-${s}`}
+            onClick={() => handleClick(s)}
+            className={`nav-item${active === s ? " active" : ""}`}
+            aria-current={active === s ? "page" : undefined}
+            style={{ background: "none", border: "none" }}
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            <span className="nav-label">{NAV_LABELS[s]}</span>
           </button>
-        </div>
+        ))}
       </nav>
-      {/* Mobile Menu Overlay */}
-      <div
-        className={cn(
-          "fixed top-0 left-0 w-full h-full bg-[#0f1111] z-50 flex flex-col items-center justify-center md:hidden transition-opacity duration-300",
-          isMenuOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        )}
+
+      {/* ── Mobile hamburger ── */}
+      <button
+        className="mobile-nav-btn"
+        onClick={() => setMenuOpen((v) => !v)}
+        aria-label={menuOpen ? "Close menu" : "Open menu"}
       >
-        <div className="flex flex-col space-y-8 text-xl">
-          {navItems.map((item, key) => (
-            <a
-              key={key}
-              href={item.href}
-              className="text-[#48eda8]/70 hover:text-[#48eda8]/90 transition-colors duration-300"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              {item.name}
-            </a>
-          ))}
-        </div>
+        {menuOpen ? <X size={18} /> : <Menu size={18} />}
+      </button>
+
+      {/* ── Mobile overlay menu ── */}
+      <div className={`mobile-menu ${menuOpen ? "visible-menu" : "hidden-menu"}`}>
+        <button
+          style={{ position: "absolute", top: "1.25rem", right: "1.25rem", background: "none", border: "none", cursor: "pointer" }}
+          onClick={() => setMenuOpen(false)}
+        >
+          <X size={22} color="var(--slate)" />
+        </button>
+        {sections.map((s) => (
+          <button
+            key={s}
+            onClick={() => handleClick(s)}
+            className={active === s ? "active" : ""}
+            style={{
+              background: "none",
+              border: "none",
+              fontSize: "1.5rem",
+              fontWeight: 600,
+              color: active === s ? "var(--teal)" : "var(--slate)",
+              cursor: "pointer",
+              letterSpacing: "0.04em",
+              fontFamily: "'Playfair Display', serif",
+            }}
+          >
+            {NAV_LABELS[s]}
+          </button>
+        ))}
       </div>
     </>
   );

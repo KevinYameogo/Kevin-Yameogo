@@ -1,90 +1,115 @@
-import { Briefcase, Code, User } from "lucide-react";
-export const AboutSection = () => {
+import { Code, Palette, Briefcase, Download } from "lucide-react";
+
+const cards = [
+  {
+    icon: <Code size={18} color="var(--teal)" />,
+    title: "Web Development",
+    desc: "Responsive, high-performance web apps with modern stacks.",
+  },
+  {
+    icon: <Palette size={18} color="var(--amber)" />,
+    title: "UI / UX Design",
+    desc: "Intuitive interfaces that deliver seamless user experiences.",
+  },
+  {
+    icon: <Briefcase size={18} color="var(--teal)" />,
+    title: "Project Delivery",
+    desc: "Driving ideas from concept to shipped product with agile methods.",
+  },
+];
+
+export const AboutSection = ({ onNavigate }) => {
   return (
-    <section id="about" className=" relative py-24 px-4 ">
-      <div className="backdrop-blur-xs container mx-auto max-w-5xl">
-        <h2 className="text-3xl text-[#F8F8FF] md:text-4xl font-bold mb-12 text-center">
-          About <span className="text-[#48eda8]">Me</span>
-        </h2>
-        <div className=" grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          <div className="space-y-6">
-            <h1 className="text-[#F8F8FF] text-2xl font-semibold">
-              Passionate webdeveloper & tech creator
-            </h1>
-            <p className="text-[#F8F8FF]/90">
-              With 4 years of hands-on learning and building projects in web
-              development, I specialize in creating responsive, accessible, and
-              performant web applications using modern technologies.
-            </p>
-            <p className="text-[#F8F8FF]/90">
-              Passionate about solving complex problems and creating meaningful
-              solutions, I stay curious and keep learning to grow with the
-              modern web.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center">
-              <a href="#contact" className="cosmic-button">
-                Get In Touch
-              </a>
-              <a
-                href="/Kevin_Yameogo_Resume.pdf"
-                target="_blank"
-                className="px-6 py-2 rounded-full  bg-primary/15 border-[#48eda8] hover:text-[#CDFF71]/90 text-[#CDFF71] hover:bg-primary/10 transition-colors duration-300"
-              >
-                Download CV
-              </a>
-            </div>
-          </div>
-          <div className="grid grid-cols-1 gap-6  ">
-            <div className="gradient-border p-6 card-hover  ">
-              <div className="flex items-start gap-4 ">
-                <div className="p-3 rounded-full bg-[#48eda8]/70">
-                  <Code className="h-6 w-6 text-[#2C2C2C]/90" />
-                </div>
-                <div className="text-left ">
-                  <h4 className="font-semibold text-lg text-[#F8F8FF]">
-                    Web Development
-                  </h4>
-                  <p className="text-[#F8F8FF]/80">
-                    Implementing responsive, high-performance web apps using
-                    modern technologies.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="gradient-border p-6 card-hover">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-[#48eda8]/70">
-                  <User className="h-6 w-6 text-[#2C2C2C]/90" />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg text-[#F8F8FF]">
-                    UI/UX Design
-                  </h4>
-                  <p className="text-[#F8F8FF]/80">
-                    Building intuitive UIs that deliver seamless UX.
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div className="gradient-border p-6 card-hover">
-              <div className="flex items-start gap-4">
-                <div className="p-3 rounded-full bg-[#48eda8]/70">
-                  <Briefcase className="h-6 w-6 text-[#2C2C2C]/90" />
-                </div>
-                <div className="text-left">
-                  <h4 className="font-semibold text-lg text-[#F8F8FF]">
-                    Project Management
-                  </h4>
-                  <p className="text-[#F8F8FF]/80">
-                    Driving projects from idea to delivery using agile
-                    technologies.
-                  </p>
-                </div>
-              </div>
-            </div>
+    <div className="glass panel-scroll" style={{ padding: "3rem 3rem" }}>
+      <p
+        className="text-muted fade-up"
+        style={{ fontSize: "0.75rem", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.5rem" }}
+      >
+        Who I am
+      </p>
+      <h2
+        className="fade-up-d1"
+        style={{ fontSize: "clamp(1.9rem, 4vw, 2.75rem)", color: "var(--slate)", marginBottom: "0.4rem" }}
+      >
+        About <span style={{ color: "var(--teal)", fontStyle: "italic" }}>Me</span>
+      </h2>
+      <div className="divider fade-up-d1" />
+
+      <div
+        className="fade-up-d2"
+        style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "2rem", alignItems: "start" }}
+      >
+        {/* Left: bio */}
+        <div>
+          <p className="text-muted" style={{ lineHeight: 1.8, marginBottom: "0.9rem", fontSize: "0.93rem" }}>
+            With 4 years of hands-on learning and project building, I specialize in
+            creating robust, scalable full-stack applications using modern technologies.
+          </p>
+          <p className="text-muted" style={{ lineHeight: 1.8, fontSize: "0.93rem", marginBottom: "1.5rem" }}>
+            Passionate about solving complex problems and creating meaningful
+            solutions — I stay curious and keep growing as a software engineer.
+          </p>
+          <div style={{ display: "flex", gap: "0.75rem", flexWrap: "wrap" }}>
+            <button
+              className="btn-primary"
+              onClick={() => onNavigate("contact")}
+              id="about-contact"
+            >
+              Get in touch
+            </button>
+            <a
+              href="/Kevin_Yameogo_Resume.pdf"
+              target="_blank"
+              rel="noreferrer"
+              className="btn-outline"
+              id="about-cv"
+            >
+              <Download size={14} /> Download CV
+            </a>
           </div>
         </div>
+
+        {/* Right: capability cards */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "0.875rem" }}>
+          {cards.map((c) => (
+            <div
+              key={c.title}
+              style={{
+                display: "flex",
+                alignItems: "flex-start",
+                gap: "0.875rem",
+                padding: "1rem 1.1rem",
+                borderRadius: "0.875rem",
+                background: "rgba(255,255,255,0.48)",
+                border: "1px solid rgba(18,138,115,0.13)",
+              }}
+            >
+              <div
+                style={{
+                  width: 36,
+                  height: 36,
+                  borderRadius: "50%",
+                  background: "rgba(18,138,115,0.09)",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  flexShrink: 0,
+                }}
+              >
+                {c.icon}
+              </div>
+              <div>
+                <p style={{ fontWeight: 600, fontSize: "0.85rem", color: "var(--slate)", marginBottom: "0.2rem" }}>
+                  {c.title}
+                </p>
+                <p style={{ fontSize: "0.78rem", color: "var(--muted)", lineHeight: 1.6 }}>
+                  {c.desc}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-    </section>
+    </div>
   );
 };

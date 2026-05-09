@@ -1,41 +1,67 @@
-import { ArrowDown } from "lucide-react";
+import { ArrowRight, Github } from "lucide-react";
 
-export const HeroSection = () => {
+export const HeroSection = ({ onNavigate }) => {
   return (
-    <section
-      id="hero"
-      className="relative min-h-screen flex flex-col items-center justify-center px-4"
-    >
-      <div className="container max-w-4xl mx-auto text-center z-10">
-        <div className="space-y-6">
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight">
-            <span className="opacity-0 text-[#F8F8FF] animate-fade-in">
-              {" "}
-              Hi, I'm
-            </span>
-            <span className="text-[#48eda8] logo opacity-0 animate-fade-in-delay-1">
-              Kevin
-            </span>
-            <span className="text-gradient text-[#F8F8FF] ml-2 opacity-0 animate-fade-in-delay-2">
-              Yameogo
-            </span>
-          </h1>
-          <p className="text-lg md:text-xl text-[#F8F8FF]/80  rounded-md backdrop-blur-xs   max-2-2xl mx-auto opacity-0 animate-fade-in-delay-3">
-            I design dynamic web experiences using modern technologies.
-            Specializing in front-end development, I deliver user interfaces
-            that are both visually engaging, and performance-driven.
-          </p>
-          <div className="opacity-0 animate-fade-in-delay-4 pt-4">
-            <a href="#projects" className="cosmic-button">
-              view my work
-            </a>
-          </div>
+    <div className="glass panel-scroll" style={{ padding: "3.5rem 3rem" }}>
+      <div style={{ maxWidth: "580px" }}>
+        <p
+          className="text-muted fade-up"
+          style={{ fontSize: "0.82rem", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "1rem" }}
+        >
+          Software Engineer · Full Stack
+        </p>
+
+        <h1
+          className="fade-up-d1"
+          style={{ fontSize: "clamp(2.6rem, 6vw, 4rem)", lineHeight: 1.1, color: "var(--slate)", marginBottom: "0.5rem" }}
+        >
+          Hi, I'm{" "}
+          <span style={{ color: "var(--teal)" }}>Kevin</span>
+          <br />
+          <span style={{ fontStyle: "italic", color: "var(--slate-mid)" }}>Yameogo</span>
+        </h1>
+
+        <div className="divider fade-up-d2" />
+
+        <p
+          className="fade-up-d2 text-muted"
+          style={{ fontSize: "1rem", lineHeight: 1.75, marginBottom: "2rem", maxWidth: "480px" }}
+        >
+          I design and build dynamic web experiences using modern technologies.
+          As a Software Engineer, I deliver scalable, full-stack solutions that are
+          visually engaging and performance-driven.
+        </p>
+
+        <div
+          className="fade-up-d3"
+          style={{ display: "flex", gap: "0.875rem", flexWrap: "wrap" }}
+        >
+          <button
+            className="btn-primary"
+            onClick={() => onNavigate("projects")}
+            id="hero-view-work"
+          >
+            View my work <ArrowRight size={15} />
+          </button>
+          <button
+            className="btn-outline"
+            onClick={() => onNavigate("about")}
+            id="hero-about"
+          >
+            About me
+          </button>
+          <a
+            href="https://github.com/KevinYameogo"
+            target="_blank"
+            rel="noreferrer"
+            className="btn-outline"
+            id="hero-github"
+            style={{ gap: "0.4rem" }}
+          >
+            <Github size={15} /> GitHub
+          </a>
         </div>
       </div>
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center animate-bounce">
-        <span className="text-sm text-[#F8F8FF] mb-2">Scroll</span>
-        <ArrowDown className="h-5 w-5 text-[#48eda8]" />
-      </div>
-    </section>
+    </div>
   );
 };

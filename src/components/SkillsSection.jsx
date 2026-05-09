@@ -1,78 +1,91 @@
 import { useState } from "react";
-import { cn } from "../lib/utils";
-import { Clock } from "lucide-react";
 
 const skills = [
-  { name: "HTML/CSS", level: 4, category: "frontend" },
-  { name: "JavaScript", level: 3, category: "frontend" },
-  { name: "React", level: 2, category: "frontend" },
-  { name: "TypeScript", level: 2, category: "frontend" },
-  { name: "Next.js", level: 1, category: "frontend" },
-  { name: "Tailwind CSS", level: 2, category: "frontend" },
-
-  { name: "Node.js", level: 2, category: "backend" },
-  { name: "mySQL", level: 2, category: "backend" },
-  { name: "Python", level: 4, category: "backend" },
-  { name: "Java", level: 4, category: "backend" },
-
-  //tools
-
-  { name: "Git/Github", level: 4, category: "tools" },
-  { name: "vs code", level: 4, category: "tools" },
-  { name: "eclipse", level: 4, category: "tools" },
-  { name: "Vercel", level: 1, category: "tools" },
+  { name: "HTML / CSS",     years: 4, category: "frontend" },
+  { name: "JavaScript",     years: 3, category: "frontend" },
+  { name: "React",          years: 2, category: "frontend" },
+  { name: "TypeScript",     years: 2, category: "frontend" },
+  { name: "Next.js",        years: 1, category: "frontend" },
+  { name: "Tailwind CSS",   years: 2, category: "frontend" },
+  { name: "Node.js",        years: 2, category: "backend"  },
+  { name: "Python",         years: 4, category: "backend"  },
+  { name: "Java",           years: 4, category: "backend"  },
+  { name: "MySQL",          years: 2, category: "backend"  },
+  { name: "Git / GitHub",   years: 4, category: "tools"    },
+  { name: "Vercel",         years: 1, category: "tools"    },
+  { name: "VS Code",        years: 4, category: "tools"    },
+  { name: "Eclipse",        years: 4, category: "tools"    },
 ];
-const categories = ["all", "frontend", "backend", "tools"];
+
+const CATS = ["all", "frontend", "backend", "tools"];
+
 export const SkillsSection = () => {
-  const [activeCategory, setActiveCategory] = useState("all");
-  const filteredSkills = skills.filter(
-    (skill) => activeCategory === "all" || skill.category === activeCategory
-  );
+  const [cat, setCat] = useState("all");
+  const filtered = skills.filter((s) => cat === "all" || s.category === cat);
+
   return (
-    <section id="skills" className="py-24, px-4 relative bg-secondary/30">
-      <div className="container mx-auto max-w-5xl">
-        <h2 className="text-[#F8F8FF] text-3xl md:text-4xl font-bold mb-12 text-center">
-          My <span className="text-[#48eda8]">skills</span>
-        </h2>
-        <div className="flex- flex-wrap justify-center mb-12 gap-4">
-          {categories.map((cat, key) => (
-            <button
-              key={key}
-              onClick={() => setActiveCategory(cat)}
-              className={cn(
-                "px-5 py-2 rounded-full transition-colors capitalize",
-                activeCategory === cat
-                  ? "bg-[#48eda8] text-[#1E1E1E]"
-                  : "bg-secondary/70 text-[#F8F8FF] hover:bg-secondary"
-              )}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredSkills.map((skill, key) => (
-            <div
-              key={key}
-              className="bg-[#687982]/20  backdrop-blur-xs p-6 shadow-xs card-hover"
-            >
-              <div className="text-left- mb-4">
-                <h3 className="font-semibold text-[#F8F8FF] text-lg">
-                  {skill.name}
-                </h3>
-              </div>
-              <div className="text-right mt-1 flex justify-between items-center">
-                <Clock className="text-sm text-[#FEAD21] " />
-                <span className="text-sm text-[#48eda8]">
-                  {skill.level > 1
-                    ? skill.level + " years"
-                    : skill.level + " year"}
-                </span>
-              </div>
-            </div>
-          ))}
-        </div>
+    <div className="glass panel-scroll" style={{ padding: "3rem 3rem" }}>
+      <p
+        className="text-muted fade-up"
+        style={{ fontSize: "0.75rem", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.5rem" }}
+      >
+        What I know
+      </p>
+      <h2
+        className="fade-up-d1"
+        style={{ fontSize: "clamp(1.9rem, 4vw, 2.75rem)", color: "var(--slate)", marginBottom: "0.4rem" }}
+      >
+        My <span style={{ color: "var(--teal)", fontStyle: "italic" }}>Skills</span>
+      </h2>
+      <div className="divider fade-up-d1" />
+
+      {/* Category filter */}
+      <div
+        className="fade-up-d2"
+        style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap", marginBottom: "1.5rem" }}
+      >
+        {CATS.map((c) => (
+          <button
+            key={c}
+            id={`skill-cat-${c}`}
+            onClick={() => setCat(c)}
+            style={{
+              padding: "0.3rem 1rem",
+              borderRadius: "999px",
+              border: "1.5px solid",
+              borderColor: cat === c ? "var(--teal)" : "var(--sand)",
+              background: cat === c ? "var(--teal)" : "transparent",
+              color: cat === c ? "#fff" : "var(--muted)",
+              fontSize: "0.78rem",
+              fontWeight: 500,
+              cursor: "pointer",
+              textTransform: "capitalize",
+              transition: "all 0.2s ease",
+            }}
+          >
+            {c}
+          </button>
+        ))}
       </div>
-    </section>
+
+      {/* Skills grid */}
+      <div
+        className="fade-up-d3"
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fill, minmax(130px, 1fr))",
+          gap: "0.75rem",
+        }}
+      >
+        {filtered.map((s) => (
+          <div key={s.name} className="skill-badge">
+            <span className="skill-name">{s.name}</span>
+            <span className="skill-meta">
+              {s.years > 1 ? `${s.years} years` : `${s.years} year`}
+            </span>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 };

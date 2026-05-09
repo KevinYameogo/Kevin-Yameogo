@@ -1,180 +1,105 @@
-import { Mail, Phone, Map, Linkedin, Bot, Send } from "lucide-react";
-import { cn } from "../lib/utils";
-import { useToast } from "./hooks/use-toast";
-import { useState, useRef } from "react";
-import emailjs from "@emailjs/browser";
+import { Mail, Linkedin, Github, MapPin } from "lucide-react";
+
 export const ContactSection = () => {
-  const { toast } = useToast();
-  const [isSubmitted, setIsSubtmitted] = useState(false);
-  const form = useRef();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsSubtmitted(true);
-
-    emailjs
-      .sendForm("service_zmv9efl", "template_yvz2hzb", form.current, {
-        publicKey: "VvoP5jnFiCCntZf9W",
-      })
-      .then(
-        () => {
-          toast({
-            title: "✅ Message sent!",
-            description:
-              "Thank you for reaching out! I’ll get back to you very soon!",
-          });
-          form.current.reset();
-        },
-        (error) => {
-          console.error("❌ Email send failed:", error.text);
-          toast({
-            title: "Error",
-            description: "Failed to send email. Please try again later.",
-            variant: "destructive",
-          });
-        }
-      )
-      .finally(() => setIsSubtmitted(false));
+  const openGmail = () => {
+    window.open(
+      "https://mail.google.com/mail/?view=cm&to=yameokevin234@gmail.com&su=Hey Kevin — let's connect!",
+      "_blank"
+    );
   };
 
   return (
-    <section id="contact" className="py-24 px-4 relative bg-secondary/30">
-      <div className="container mx-auto max-w-5xl backdrop-blur-xs">
-        <h2 className="text-[#F8F8FF] text-3xl md:text-4xl text-center mb-4 font-bold">
-          Get In <span className="text-[#48eda8]">Touch</span>
-        </h2>
-        <p className="text-center text-[#F8F8FF] mb-12  max-w-2xl mx-auto">
-          Got a project idea or want to collaborate? Let’s connect — I’m always
-          excited to explore new opportunities.
-        </p>
-        <div className="bg-[#687982]/20 text-[#F8F8FF] grid grid-cols-1 md:grid-cols-2 gap-12">
-          <div className="space-y-8 ">
-            <h3 className="text-2xl font-semibold mb-6">Contact Information</h3>
-            <div className="space-y-6 justify-center">
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Mail className="h-6 w-6 text-[#48eda8]" />
-                </div>
-                <div>
-                  <h4 className="font-medium">Email</h4>
-                  <a
-                    href="mailto:yameokevin234@gmail.com"
-                    className="text-muted-foreground hover:text-[#48eda8] transition-colors"
-                  >
-                    yameokevin234@gmail.com
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Phone className="h-6 w-6 text-[#48eda8]" />
-                </div>
-                <div>
-                  <h4 className="font-medium">Phone</h4>
-                  <a
-                    href="tel:+19292314873"
-                    className="text-muted-foreground hover:text-[#48eda8] transition-colors"
-                  >
-                    +1 (929)-234-4873
-                  </a>
-                </div>
-              </div>
-              <div className="flex items-start space-x-4">
-                <div className="p-3 rounded-full bg-primary/10">
-                  <Map className="h-6 w-6 text-[#48eda8]" />
-                </div>
-                <div>
-                  <h4 className="font-medium">Location</h4>
-                  <a className="text-muted-foreground hover:text-[#48eda8] transition-colors">
-                    New York, US
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div className="pt-8">
-              <h4 className="font-medium mb-4">Connect with Me</h4>
-              <div className="flex space-x-4 justify-center">
-                <a
-                  href="https://www.linkedin.com/in/kevin-yameogo/"
-                  target="_blank"
-                >
-                  <Linkedin className="text-[#8AB4F7]/95 transition-colors  hover:text-[#8AB4F7]/20" />
-                </a>
-                <a href="https://discord.com/channels/@me" target="_blank">
-                  <Bot className="text-[#48eda8] hover:text-[#48eda8]/20 transition-colors" />
-                </a>
-              </div>
-            </div>
+    <div className="glass panel-scroll" style={{ padding: "3.5rem 3rem", maxWidth: "560px", margin: "0 auto" }}>
+      <p
+        className="text-muted fade-up"
+        style={{ fontSize: "0.75rem", letterSpacing: "0.12em", textTransform: "uppercase", marginBottom: "0.5rem" }}
+      >
+        Let's talk
+      </p>
+      <h2
+        className="fade-up-d1"
+        style={{ fontSize: "clamp(1.9rem, 4vw, 2.75rem)", color: "var(--slate)", marginBottom: "0.4rem" }}
+      >
+        Get In <span style={{ color: "var(--teal)", fontStyle: "italic" }}>Touch</span>
+      </h2>
+      <div className="divider fade-up-d1" />
+
+      <p
+        className="text-muted fade-up-d2"
+        style={{ fontSize: "0.93rem", lineHeight: 1.8, marginBottom: "2rem" }}
+      >
+        Got a project idea or want to collaborate? I'm always open to exploring
+        new opportunities. Hit me up — I'd love to hear from you.
+      </p>
+
+      {/* Info rows */}
+      <div className="fade-up-d2" style={{ display: "flex", flexDirection: "column", gap: "1rem", marginBottom: "2.25rem" }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+          <div style={{ width: 36, height: 36, borderRadius: "50%", background: "rgba(18,138,115,0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+            <Mail size={16} color="var(--teal)" />
           </div>
-          <div className="bg-card  p-8 rounded-lg show-xs">
-            <h3 className="text-2xl font-semibold mb-6">Send a message</h3>
-            <form
-              ref={form}
-              onSubmit={handleSubmit}
-              action=""
-              className="space-y-6"
+          <div>
+            <p style={{ fontSize: "0.72rem", color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.08em" }}>Email</p>
+            <a
+              href="mailto:yameokevin234@gmail.com"
+              style={{ fontSize: "0.88rem", color: "var(--slate)", textDecoration: "none", fontWeight: 500 }}
+              onMouseEnter={(e) => (e.currentTarget.style.color = "var(--teal)")}
+              onMouseLeave={(e) => (e.currentTarget.style.color = "var(--slate)")}
             >
-              <div>
-                <label
-                  htmlFor="name"
-                  className="block text-sm font-medium mb-2"
-                >
-                  Your name
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="from_name"
-                  required
-                  className="text-[#1E1E1E] px-4 w-full py-3 border border-input  rounded-md bg-bg  focus:outline-hidden focus:ring-2 focus:ring-[#48eda8]/50"
-                  placeholder="Kevin Yameogo"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="email"
-                  className="block text-sm font-medium mb-2"
-                >
-                  Your email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="from_email"
-                  required
-                  className="text-[#1E1E1E]  px-4 w-full py-3 border border-input  rounded-md bg-bg  focus:outline-hidden focus:ring-2 focus:ring-[#48eda8]/50"
-                  placeholder="yameokevin234@gmail.com"
-                />
-              </div>
-              <div>
-                <label
-                  htmlFor="message"
-                  className="block text-sm font-medium mb-2"
-                >
-                  Your message
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  required
-                  className="text-[#1E1E1E] px-4 w-full py-3 border border-input  rounded-md bg-bg  focus:outline-hidden focus:ring-2 focus:ring-[#48eda8]/50 resize-none"
-                  placeholder="Hello, kev ...."
-                />
-              </div>
-              <button
-                disabled={isSubmitted}
-                type="submit"
-                className={cn(
-                  "cosmic-button w-full flex items-center justify-center gap-2"
-                )}
-              >
-                {isSubmitted ? "Submitting..." : "Send Message"}
-                <Send size={16} />
-              </button>
-            </form>
+              yameokevin234@gmail.com
+            </a>
+          </div>
+        </div>
+
+        <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
+          <div style={{ width: 36, height: 36, borderRadius: "50%", background: "rgba(18,138,115,0.1)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+            <MapPin size={16} color="var(--amber)" />
+          </div>
+          <div>
+            <p style={{ fontSize: "0.72rem", color: "var(--muted)", textTransform: "uppercase", letterSpacing: "0.08em" }}>Location</p>
+            <p style={{ fontSize: "0.88rem", color: "var(--slate)", fontWeight: 500 }}>New York, US</p>
           </div>
         </div>
       </div>
-    </section>
+
+      {/* CTA Button */}
+      <div className="fade-up-d3" style={{ marginBottom: "1.75rem" }}>
+        <button
+          id="contact-gmail"
+          className="btn-primary"
+          onClick={openGmail}
+          style={{ fontSize: "0.95rem", padding: "0.75rem 2rem" }}
+        >
+          <Mail size={16} /> Open Gmail
+        </button>
+      </div>
+
+      {/* Social links */}
+      <div className="fade-up-d4" style={{ display: "flex", gap: "0.875rem", alignItems: "center" }}>
+        <p style={{ fontSize: "0.78rem", color: "var(--muted)", marginRight: "0.25rem" }}>Find me on</p>
+        <a
+          href="https://www.linkedin.com/in/kevin-yameogo/"
+          target="_blank"
+          rel="noreferrer"
+          id="contact-linkedin"
+          style={{ color: "var(--muted)", transition: "color 0.2s" }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "#0a66c2")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted)")}
+        >
+          <Linkedin size={20} />
+        </a>
+        <a
+          href="https://github.com/KevinYameogo"
+          target="_blank"
+          rel="noreferrer"
+          id="contact-github"
+          style={{ color: "var(--muted)", transition: "color 0.2s" }}
+          onMouseEnter={(e) => (e.currentTarget.style.color = "var(--slate)")}
+          onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted)")}
+        >
+          <Github size={20} />
+        </a>
+      </div>
+    </div>
   );
 };
