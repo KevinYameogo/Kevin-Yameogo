@@ -32,25 +32,37 @@ const projects = [
     demoUrl: "",
   },
   {
-    id: 1,
-    title: "EventoAll",
+    id: 6,
+    title: "UptimeChecker",
     description:
-      "Interactive event discovery platform — 30+ countries via Ticketmaster API, serverless Vercel functions.",
-    image: "/projects/event.mov.gif",
-    tags: ["HTML", "CSS", "JavaScript", "Node.js", "Vercel"],
-    githubUrl: "https://github.com/KevinYameogo/EventoAll",
-    demoUrl: "https://eventoall.com/",
+      "Full-stack uptime monitoring platform with multi-provider checks, real-time analytics, and multi-channel outage alerts.",
+    image: "/projects/uptimechecker.gif",
+    tags: ["Next.js", "TypeScript", "Supabase", "Stripe", "Redis/QStash", "Vercel"],
+    githubUrl: "",
+    demoUrl: "https://www.uptimechecker.app/",
   },
-  {
-    id: 5,
-    title: "CitationLoad",
-    description:
-      "A citation management tool with an intuitive interface for adding, viewing, and organizing references using structured Local Storage.",
-    image: "/projects/citation.mov.gif",
-    tags: ["HTML", "CSS", "JavaScript"],
-    githubUrl: "https://github.com/KevinYameogo/CitationLoad",
-    demoUrl: "https://kevinyameogo.github.io/CitationLoad/",
-  },
+  /*
+    {
+      id: 1,
+      title: "EventoAll",
+      description:
+        "Interactive event discovery platform — 30+ countries via Ticketmaster API, serverless Vercel functions.",
+      image: "/projects/event.mov.gif",
+      tags: ["HTML", "CSS", "JavaScript", "Node.js", "Vercel"],
+      githubUrl: "https://github.com/KevinYameogo/EventoAll",
+      demoUrl: "https://eventoall.com/",
+    },
+    {
+      id: 5,
+      title: "CitationLoad",
+      description:
+        "A citation management tool with an intuitive interface for adding, viewing, and organizing references using structured Local Storage.",
+      image: "/projects/citation.mov.gif",
+      tags: ["HTML", "CSS", "JavaScript"],
+      githubUrl: "https://github.com/KevinYameogo/CitationLoad",
+      demoUrl: "https://kevinyameogo.github.io/CitationLoad/",
+    },
+  */
 ];
 
 export const ProjectSection = () => {
@@ -109,17 +121,19 @@ export const ProjectSection = () => {
                 {p.description}
               </p>
               <div style={{ display: "flex", gap: "0.75rem", marginTop: "auto", paddingTop: "0.5rem" }}>
-                <a
-                  href={p.githubUrl}
-                  target="_blank"
-                  rel="noreferrer"
-                  id={`proj-github-${p.id}`}
-                  style={{ color: "var(--muted)", transition: "color 0.2s" }}
-                  onMouseEnter={(e) => (e.currentTarget.style.color = "var(--teal)")}
-                  onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted)")}
-                >
-                  <Github size={17} />
-                </a>
+                {p.githubUrl && (
+                  <a
+                    href={p.githubUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    id={`proj-github-${p.id}`}
+                    style={{ color: "var(--muted)", transition: "color 0.2s" }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "var(--teal)")}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = "var(--muted)")}
+                  >
+                    <Github size={17} />
+                  </a>
+                )}
                 {p.demoUrl && (
                   <a
                     href={p.demoUrl}
