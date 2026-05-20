@@ -62,25 +62,40 @@ const projects = [
 ];
 
 const skills = {
-  frontend: [
-    { name: "HTML / CSS", years: 4 },
-    { name: "JavaScript", years: 3 },
-    { name: "React", years: 2 },
+  languages: [
+    { name: "Java", years: 4 },
+    { name: "Python", years: 4 },
     { name: "TypeScript", years: 2 },
+    { name: "JavaScript", years: 3 },
+    { name: "HTML / CSS", years: 4 },
+  ],
+  frameworks: [
     { name: "Next.js", years: 1 },
+    { name: "React", years: 2 },
+    { name: "Node.js", years: 2 },
+    { name: "FastAPI" },
     { name: "Tailwind CSS", years: 2 },
   ],
-  backend: [
-    { name: "Node.js", years: 2 },
-    { name: "Python", years: 4 },
-    { name: "Java", years: 4 },
-    { name: "MySQL", years: 2 },
-  ],
-  tools: [
+  developerTools: [
     { name: "Git / GitHub", years: 4 },
-    { name: "Vercel", years: 1 },
     { name: "VS Code", years: 4 },
+    { name: "PyCharm" },
     { name: "Eclipse", years: 4 },
+    { name: "Vercel", years: 1 },
+    { name: "Docker", years: 1 },
+  ],
+  databases: [
+    { name: "PostgreSQL" },
+    { name: "MySQL", years: 2 },
+    { name: "Redis", years: 2 },
+    { name: "Supabase", years: 3 },
+  ],
+  libraries: [
+    { name: "React Query" },
+    { name: "pandas" },
+    { name: "NumPy" },
+    { name: "OpenAI" },
+    { name: "Stripe" },
   ],
 };
 
