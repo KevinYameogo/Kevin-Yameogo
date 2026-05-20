@@ -62,9 +62,26 @@ const projects = [
 ];
 
 const skills = {
-  frontend: ["React", "Next.js", "TypeScript", "JavaScript", "Tailwind CSS", "HTML/CSS"],
-  backend: ["Python", "Node.js", "Java", "FastAPI", "MySQL", "Supabase"],
-  tools: ["Git/GitHub", "Vercel", "Docker", "Redis/QStash", "VS Code", "Eclipse"],
+  frontend: [
+    { name: "HTML / CSS", years: 4 },
+    { name: "JavaScript", years: 3 },
+    { name: "React", years: 2 },
+    { name: "TypeScript", years: 2 },
+    { name: "Next.js", years: 1 },
+    { name: "Tailwind CSS", years: 2 },
+  ],
+  backend: [
+    { name: "Node.js", years: 2 },
+    { name: "Python", years: 4 },
+    { name: "Java", years: 4 },
+    { name: "MySQL", years: 2 },
+  ],
+  tools: [
+    { name: "Git / GitHub", years: 4 },
+    { name: "Vercel", years: 1 },
+    { name: "VS Code", years: 4 },
+    { name: "Eclipse", years: 4 },
+  ],
 };
 
 const files = [
